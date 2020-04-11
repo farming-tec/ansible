@@ -1,0 +1,6 @@
+---
+- hosts: generalservers
+  roles:
+    - common
+    - webservers
+    - azure
