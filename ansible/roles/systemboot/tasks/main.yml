@@ -1,0 +1,6 @@
+---
+- name: Run flask
+  shell: python -m flask run --host=0.0.0.0 &> /dev/null &
+  environment:
+    FLASK_APP: '{{ flask_folder }}/{{ flask_app }}'
+    FLASK_ENV: '{{ flask_env }}'

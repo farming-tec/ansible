@@ -1,0 +1,3 @@
+---
+- name: install apt packages
+  command: echo "Hola mundo"

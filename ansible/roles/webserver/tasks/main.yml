@@ -1,0 +1,16 @@
+---
+- name: install apt packages
+  apt: 
+    pkg: 
+      - nginx 
+      - nodejs
+      - npm
+      - yarn
+    state: present
+    update_cache: true
+  become: true
+- name: install flask 
+  pip:
+    name: flask
+- name: start nginx
+  service: name=nginx state=started

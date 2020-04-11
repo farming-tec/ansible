@@ -1,6 +1,11 @@
 ---
-- hosts: generalservers
+- name: Install Development Stuff
+  hosts: generalservers
+  pre_tasks:
+    - name: update apt cache
+      apt: update_cache=yes
+      become: true
   roles:
-    - common
-    - webservers
-    - azure
+    - role: common
+    - role: webserver
+    - role: deployment

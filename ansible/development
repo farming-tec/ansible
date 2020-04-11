@@ -1,0 +1,4 @@
+mainserver ansible_connection=local
+
+[generalservers]
+mainserver

@@ -1,6 +1,0 @@
-env:
-  src: ../scripts/variables.sh
-  dst: /etc/profile.d/vars-environment.sh
-flask: 
-  app: /vagrant_data/hello.py
-  env: development

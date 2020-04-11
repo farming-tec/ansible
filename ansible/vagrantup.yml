@@ -1,0 +1,6 @@
+---
+- name: Ansible tasks at vagrant up/reload
+  hosts: generalservers
+  roles:
+    - role: common
+    - role: systemboot
