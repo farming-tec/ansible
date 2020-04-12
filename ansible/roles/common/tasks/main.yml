@@ -1,10 +1,18 @@
 ---
-- name: Copy environment file
+- name: install common apt programs
+  become: true
+  apt:
+    pkg: 
+      - lsb-release
+    state: present
+    update_cache: true
+    cache_valid_time: 604800
+- name: copy environment file
   copy:
     src: vars-environment.sh
     dest: '{{ env_folder }}/{{ env_filename }}'
   become: true
-- name: Add commands to env file
+- name: add commands to env file
   become: true
   blockinfile:
     dest: '{{ env_folder }}/{{ env_filename }}'
@@ -12,3 +20,11 @@
     marker: '# {mark} ANSIBLE MANAGED BLOCK - variables'
     insertafter: EOF
     create: true
+- name: get distro_repo from VM
+  when: distro_repo is not defined
+  shell: lsb_release -cs
+  register: distro_repo
+- set_fact:
+    distro_repo: '{{ distro_repo.stdout }}'
+    cacheable: yes
+  

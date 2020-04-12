@@ -1,3 +1,39 @@
 ---
-- name: install apt packages
-  command: echo "Hola mundo"
+- name: install azure dependencies
+  become: true
+  apt:
+    pkg:
+      - ca-certificates
+      - curl
+      - apt-transport-https
+      - gnupg
+    state: present
+    update_cache: true
+- name: add microsoft key
+  apt_key: 
+    url: https://packages.microsoft.com/keys/microsoft.asc
+    state: present
+  become: true
+- name: add azure-cli repository
+  apt_repository:
+    repo: 'deb [arch=amd64] https://packages.microsoft.com/repos/azure-cli/ {{ distro_repo }} main'
+    filename: azure-cli
+    state: present
+  when: distro_repo is defined
+  become: true
+- name: install azure-cli
+  apt:
+    pkg:
+      - azure-cli
+    state: present
+    update_cache: true
+  when: distro_repo is defined
+  become: true
+- name: login to azure-cli
+  shell: 'az login --service-principal -u {{ az_username }} -p={{ az_secret }} --tenant {{ az_tenant }}'
+  when:
+    - distro_repo is defined
+    - az_username is defined
+    - az_secret is defined
+    - az_tenant is defined
+  no_log: true
