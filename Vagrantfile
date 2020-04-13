@@ -16,6 +16,7 @@ Vagrant.configure("2") do |config|
 
   config.vm.synced_folder "../fast_bionic64", "/var/www/html"
   config.vm.synced_folder "../flask_bionic64", "/vagrant_data"
+  config.vm.synced_folder "../ansible_bionic64", "/ansible"
 
   config.vm.provision "ansible_local" do |ansible|
     ansible.inventory_path = ANSIBLE_INVENTORY

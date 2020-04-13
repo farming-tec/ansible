@@ -37,3 +37,22 @@
     - az_secret is defined
     - az_tenant is defined
   no_log: true
+- name: extract azcopy
+  become: true
+  unarchive:
+    src: https://aka.ms/downloadazcopy-v10-linux
+    dest: /usr/bin
+    creates: /usr/bin/azcopy
+    exclude:
+      - ThirdPartyNotice.txt
+    remote_src: true
+    extra_opts:
+      - --strip-components=1
+# - name: login to azurecopy
+#   become: true
+#   shell: 'AZCOPY_SPA_CLIENT_SECRET="{{ az_secret }}" azcopy login --service-principal --application-id="{{ az_username }}" --tenant-id="{{ az_tenant }}"'
+#   when:
+#     - distro_repo is defined
+#     - az_username is defined
+#     - az_secret is defined
+#     - az_tenant is defined          

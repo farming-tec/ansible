@@ -1,2 +1,4 @@
 .vagrant
 ansible/secrets/
+ansible/group_vars/*.yml
+ansible/host_vars/*.yml
