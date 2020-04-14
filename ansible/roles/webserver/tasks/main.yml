@@ -1,27 +1,15 @@
 ---
-- name: Install gpg key for nodejs
-  apt_key:
-    url: 'https://deb.nodesource.com/gpgkey/nodesource.gpg.key'
-    state: present
-  become: true
-# - name: add node repository
-#   apt_repository:
-#     repo: 'deb [arch=amd64] https://deb.nodesource.com/setup_12.x {{ distro_repo }} main'
-#     state: present
-  become: true
-- name: install apt packages
+- include: nodejs.yml
+- name: install nginx
   become: true
   apt: 
-    pkg: 
-      - nginx 
-      - nodejs
-      - npm
-      - yarn
+    name: nginx 
     state: present
     update_cache: true
-    cache_valid_time: 3
+    cache_valid_time: 604800
 - name: install flask 
   pip:
     name: flask
+    state: present
 - name: start nginx
   service: name=nginx state=started

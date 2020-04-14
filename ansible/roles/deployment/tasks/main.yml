@@ -9,6 +9,7 @@
       - gnupg
     state: present
     update_cache: true
+    cache_valid_time: 3600
 - name: add microsoft key
   apt_key: 
     url: https://packages.microsoft.com/keys/microsoft.asc

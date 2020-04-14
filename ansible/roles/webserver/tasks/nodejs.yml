@@ -1,0 +1,29 @@
+---
+- name: install gpg key for nodejs and yarn
+  apt_key:
+    url: '{{ item }}'
+    state: present
+  become: true
+  with_items:
+    - https://deb.nodesource.com/gpgkey/nodesource.gpg.key
+    - https://dl.yarnpkg.com/debian/pubkey.gpg
+- name: add node repository
+  apt_repository:
+    repo: 'deb https://deb.nodesource.com/node_12.x {{ distro_repo }} main'
+    state: present
+  become: true
+- name: add yarn repository
+  apt_repository:
+    repo: 'deb https://dl.yarnpkg.com/debian/ stable main'
+    state: present
+  become: true
+- name: install nodejs stuff
+  become: true
+  apt:
+    pkg:
+      - nodejs=12.*
+      - yarn
+      # - npm      
+    state: present
+    update_cache: true
+    cache_valid_time: 3600
