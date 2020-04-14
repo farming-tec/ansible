@@ -1,4 +1,14 @@
 ---
+- name: Install gpg key for nodejs
+  apt_key:
+    url: 'https://deb.nodesource.com/gpgkey/nodesource.gpg.key'
+    state: present
+  become: true
+# - name: add node repository
+#   apt_repository:
+#     repo: 'deb [arch=amd64] https://deb.nodesource.com/setup_12.x {{ distro_repo }} main'
+#     state: present
+  become: true
 - name: install apt packages
   become: true
   apt: 
@@ -9,7 +19,7 @@
       - yarn
     state: present
     update_cache: true
-    cache_valid_time: 3600
+    cache_valid_time: 3
 - name: install flask 
   pip:
     name: flask
