@@ -1,0 +1,15 @@
+[Unit]
+Description=Flask web application
+After=network.target
+
+# TODO Support variables connected with ansible
+[Service]
+User=vagrant
+WorkingDirectory=/vagrant_data
+Environment=FLASK_ENV=development
+Environment=FLASK_APP=app.py
+ExecStart=/usr/bin/python3 -m flask run --host=0.0.0.0
+Restart=always
+
+[Install]
+WantedBy=multi-user.target

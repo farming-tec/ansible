@@ -1,0 +1,1 @@
+yarn add -D @babel/core @babel/plugin-transform-regenerator @babel/plugin-transform-runtime @babel/preset-env @babel/preset-react babel-loader css-loader cssnano file-loader file-saver postcss postcss-easy-import postcss-loader postcss-url precss react-hot-loader style-loader url-loader webpack webpack-cli webpack-merge

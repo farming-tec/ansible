@@ -41,7 +41,7 @@
 - name: extract azcopy
   become: true
   unarchive:
-    src: https://aka.ms/downloadazcopy-v10-linux
+    src: 'https://aka.ms/downloadazcopy-v10-linux'
     dest: /usr/bin
     creates: /usr/bin/azcopy
     exclude:

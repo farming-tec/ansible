@@ -25,6 +25,7 @@ Vagrant.configure("2") do |config|
     ansible.install_mode = "pip"
     ansible.limit = "all"
     ansible.verbose = ANSIBLE_DEBUG
+    ansible.compatibility_mode = "2.0" 
   end
   
   config.vm.provision "ansible_local", run: "always" do |ansible|
@@ -32,5 +33,6 @@ Vagrant.configure("2") do |config|
     ansible.playbook = ANSIBLE_UP_
     ansible.limit = "all"
     ansible.verbose = ANSIBLE_DEBUG
+    ansible.compatibility_mode = "2.0"
   end 
 end

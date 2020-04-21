@@ -1,0 +1,14 @@
+---
+- name: copy environment file
+  copy:
+    src: vars-environment.sh
+    dest: '{{ env_folder }}/{{ env_filename }}'
+  become: true
+- name: add commands to env file
+  become: true
+  blockinfile:
+    dest: '{{ env_folder }}/{{ env_filename }}'
+    block: '{{ env_variables }}'
+    marker: '# {mark} ANSIBLE MANAGED BLOCK - variables'
+    insertafter: EOF
+    create: true
