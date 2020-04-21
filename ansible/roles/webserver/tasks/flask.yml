@@ -1,8 +1,11 @@
 ---
-- name: install flask 
+- name: install 'flask' packages
   pip:
-    name: flask
+    name: '{{ item }}'
     state: present
+  with_items:
+    - flask
+    - flask-cors
 - name: copy 'microflask' service file
   copy:
     src: microflask.service

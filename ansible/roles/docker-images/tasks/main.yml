@@ -1,0 +1,11 @@
+---
+- name: pull 'docker' images
+  become: true
+  docker_image:
+    name: '{{ item }}'
+    source: pull
+    state: present
+  with_items:
+    - node:12-stretch-slim
+    - mongo:4.0-xenial
+    - hello-world

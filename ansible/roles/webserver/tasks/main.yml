@@ -1,6 +1,5 @@
 ---
 - include: docker.yml
 - include: nodejs.yml
-# - include: docker.yml
 - include: nginx.yml
 - include: flask.yml

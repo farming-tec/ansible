@@ -26,26 +26,17 @@
     name: vagrant
     groups: docker
     append: true  
-- name: init docker to systemd
-  service:
-    state: started
-    name: docker    
+# - name: init docker to systemd
+#   service:
+#     state: started
+#     name: docker    
 - name: install 'docker' SDK for python
   pip:
     name: docker
     state: present
-- name: download docker-compose
+- name: download 'docker-compose'
   become: true
   get_url:
     url: 'https://github.com/docker/compose/releases/download/1.25.5/docker-compose-Linux-x86_64'
     dest: '/usr/local/bin/docker-compose'
     mode: 0755
-- name: pull nodejs and mongo images
-  docker_image:
-    name: '{{ item }}'
-    source: pull
-    state: present
-  with_items:
-    - node:12-stretch-slim
-    - mongo:4.0-xenial
-    - hello-world    
