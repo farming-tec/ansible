@@ -9,7 +9,7 @@
   apt:
     pkg: 
       - lsb-release
-      # - python3-pip
+      - python3-pip
     state: present
     update_cache: true
     cache_valid_time: 604800
