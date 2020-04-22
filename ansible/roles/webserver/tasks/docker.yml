@@ -19,18 +19,20 @@
     state: present
     update_cache: true
     cache_valid_time: 68400
-# FIXME allow vagrant user to the current playbook - 'ControlPersist'
+# FIXME allow vagrant user to the current playbook - 'ControlPersist'. Use whoami to debug
 - name: add 'vagrant' user to docker group
   become: true
   user:
     name: vagrant
     groups: docker
     append: true  
-# - name: init docker to systemd
-#   service:
-#     state: started
-#     name: docker    
+- name: init docker to systemd
+  service:
+    state: started
+    name: docker
+# sudo is required to install correctely sdk and use it with 'docker-image'    
 - name: install 'docker' SDK for python
+  become: true
   pip:
     name: docker
     state: present

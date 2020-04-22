@@ -1,11 +1,12 @@
 ---
+# sudo is required to install correctely the modules
 - name: install 'flask' packages
+  become: true
   pip:
-    name: '{{ item }}'
+    name: 
+      - flask
+      - flask-cors
     state: present
-  with_items:
-    - flask
-    - flask-cors
 - name: copy 'microflask' service file
   copy:
     src: microflask.service
@@ -19,3 +20,11 @@
     name: microflask
     state: started
     enabled: yes
+
+# FIXME allow without become, ConstantCache
+# - name: start 'microflask' service
+#   become: true
+#   systemd: 
+#     name: microflask
+#     state: started
+#     daemon_reload: yes    

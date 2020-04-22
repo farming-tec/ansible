@@ -11,4 +11,4 @@
     - role: systemlib
     - role: common
     - role: webserver
-    # - role: deployment
+    - role: deployment
