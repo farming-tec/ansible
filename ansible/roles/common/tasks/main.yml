@@ -8,4 +8,14 @@
   set_fact:
     distro_repo: '{{ distro_repo.stdout }}'
     cacheable: yes
+- name: Create '@types' if not exists
+  file:
+    path: /var/www/html/frontend/@types
+    state: directory
+- name: Copy .env file if not exists
+  copy: 
+    src: /var/www/html/frontend/.env.example
+    dest: /var/www/html/frontend/.env
+    remote_src: true
+    force: no
   
