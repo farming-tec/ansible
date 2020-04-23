@@ -12,3 +12,10 @@
     marker: '# {mark} ANSIBLE MANAGED BLOCK - variables'
     insertafter: EOF
     create: true
+- name: add aliases to bash
+  blockinfile:
+    dest: '/home/vagrant/.bashrc'
+    block: '{{ bash_aliases_vm }}'
+    marker: '# {mark} ANSIBLE MANAGED BLOCK - aliases'
+    insertafter: EOF
+    create: true    

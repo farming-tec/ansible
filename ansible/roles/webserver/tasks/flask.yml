@@ -6,6 +6,11 @@
     name: 
       - flask
       - flask-cors
+      - Flask-DotEnv
+      - flask-mongoengine
+      - flask-security
+      - flask-socketio
+      - flask-mqtt
     state: present
 - name: copy 'microflask' service file
   copy:

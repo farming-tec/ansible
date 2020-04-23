@@ -1,3 +1,7 @@
 ---
 env_folder: /etc/profile.d
 env_filename: vars-environment.sh
+bash_aliases_vm: |
+    export react_folder="/var/www/html/frontend/public"
+    alias react="cd /var/www/html/frontend/"
+    alias az-react="ansible-playbook /ansible/syncstorage.yml -i /ansible/hosts -v"
