@@ -29,7 +29,12 @@ Vagrant.configure("2") do |config|
   config.vm.network "forwarded_port", guest: 5671,  host: 5671  # Service AMQP 0.9
   config.vm.network "forwarded_port", guest: 5672,  host: 5672  # Service AMQP 1
   config.vm.network "forwarded_port", guest: 15675, host: 15675 # Service MQTT over WS
+  config.vm.network "forwarded_port", guest: 15673, host: 15673 # Service MQTT over WSS
   config.vm.network "forwarded_port", guest: 15672, host: 15672 # Service Rabbit HTTP
+  config.vm.network "forwarded_port", guest: 15671, host: 15671 # Service Rabbit HTTPS
+  
+
+  
 
   # Synced folders
   config.vm.synced_folder "../fast_bionic64", "/var/www/html"   # NGNIX folder

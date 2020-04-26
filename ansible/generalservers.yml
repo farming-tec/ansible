@@ -10,5 +10,6 @@
   roles:
     - role: systemlib
     - role: common
+    - role: terraform
     - role: webserver
     - role: deployment

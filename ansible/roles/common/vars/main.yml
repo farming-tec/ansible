@@ -5,3 +5,10 @@ bash_aliases_vm: |
     export react_folder="/var/www/html/frontend/public"
     alias react="cd /var/www/html/frontend/"
     alias az-react="ansible-playbook /ansible/syncstorage.yml -i /ansible/hosts -v"
+    rmdocker(){
+        docker-compose down
+        docker volume list | awk '{print $2}' | xargs -I{ docker volume rm {
+        docker images | grep frontend | awk '{print $3}' | xargs -I{ docker rmi {
+        printf "\e[38;2;2;195;154mDone! \e[39m\n"
+    }
+    alias redocker="rmdocker && docker-compose build"
