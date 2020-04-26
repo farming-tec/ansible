@@ -36,9 +36,17 @@
   pip:
     name: docker
     state: present
+- stat:
+    path: /usr/local/bin/docker-compose
+  register: result_file   
 - name: download 'docker-compose'
   become: true
   get_url:
     url: 'https://github.com/docker/compose/releases/download/1.25.5/docker-compose-Linux-x86_64'
     dest: '/usr/local/bin/docker-compose'
     mode: 0755
+  when: result_file.stat.exists == false
+  register: result
+  until: result is succeeded 
+  retries: 8
+  delay: 12

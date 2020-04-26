@@ -14,3 +14,16 @@
     dest: '/usr/local/bin'
     creates: '/usr/local/bin/terraform'
     remote_src: true
+  register: result
+  until: result is succeeded  
+  retries: 8
+  delay: 12
+# - debug:
+#     var: result.failed
+# - command: echo "Hola mundo"
+#   when: result is failed
+# - command: echo "Hellow world"
+#   when: result is succeeded  
+#   # until: result is succeeded  
+#   # retries: 5
+#   # delay: 10
