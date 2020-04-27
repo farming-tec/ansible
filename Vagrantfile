@@ -47,7 +47,8 @@ Vagrant.configure("2") do |config|
     ansible.install_mode = "pip"
     ansible.inventory_path = ANSIBLE_INVENTORY
     ansible.limit = "all"
-    ansible.pip_install_cmd = "sudo apt-get install -y python3-pip && sudo rm -f /usr/bin/pip && sudo ln -s /usr/bin/pip3 /usr/bin/pip"
+    ansible.pip_args = "--no-cache-dir"
+    ansible.pip_install_cmd = "sudo apt install -y python3-pip && sudo ln -s /usr/bin/pip3 /usr/bin/pip"
     ansible.playbook = ANSIBLE_GENERAL_
     ansible.playbook_command = ANS_PLAYBOOK_CMD
     ansible.verbose = ANSIBLE_DEBUG
